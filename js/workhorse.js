@@ -17,11 +17,9 @@ function getRankingsJSON(testName) {
 
 function putTestDescription() {
 
-	var obj = JSON.parse(getTestsPara('test1'));
-
-	for (var i = 0; i < obj.rankings.length; i++) {
-		document.write("<p>" + +"</p>");
-	}
+	
+		document.write("<p>" + getTestsPara('test1') + "</p>");
+	
 }
 
 function getTestsPara(testName) {
