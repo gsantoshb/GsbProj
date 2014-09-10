@@ -11,6 +11,38 @@
     <title></title>
   </head>
   <body>
+  <script>
+
+//Some Jquery for getting the submit button.
+
+$(document).ready(function () {
+	$('#xmlFormattedDiv').hide();
+	$("#submitBtn").click(function () {
+
+		//Get the xml content from the text box
+		var xmlContent = $("#inputXML").text();
+
+		if (validateTextBox(xmlContent)) {
+			$('#xmlFormattedDiv').show("fast");
+		} else {
+			$('#alertMsg').html('<div class="alert alert-warning alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><strong>Hey!</strong> Better check the XML as it doesn\'t seem to be proper.</div>');
+		}
+	});
+
+	$("#clearBtn").click(function () {
+		$('#xmlFormattedDiv').hide("fast");
+		if($('#alertMsg').is(":visible")){
+			$('.alert').remove();
+	}
+	
+		$("textarea").val('');
+		
+	
+	});
+});
+
+
+</script>		
     <!-- Fixed navbar -->
     <div class="navbar navbar-default navbar-fixed-top" role="navigation">
       <div class="container">
@@ -34,10 +66,7 @@
       </div>
     </div>
     <div class="container" id="mainContent">
-      <br />
-      <div class="page-header">
-        <h1>Welcome to XML Formatta</h1>
-      </div>
+     <br /><br /><br />
       <div class="row">
         <div class="col-md-3">
           <div class="panel panel-primary">
@@ -54,38 +83,20 @@
 			Please enter a valid unformatted XML to pretty print.
 			
 			
-  <div>
 	<textarea rows="10" cols="70" id="inputXML" name="inputXml"></textarea>
 	  <button id="submitBtn" class="btn btn-default">Submit</button>
 	  	  <button  id="clearBtn" class="btn btn-default">Clear</button>
 
 	  <br /><br />
-	 <textarea id="xmlFormattedDiv" rows="10" cols="70" id="outputXML" name="outputXml"></textarea>
-
+	  
+	 <textarea  id="xmlFormattedDiv" rows="10" cols="70" id="outputXML" name="outputXml" readonly></textarea>
+	 <div id="alertMsg"></div>
   </div>
   
-   
-		
 			</div>
           </div>
-        </div>
 		
-<script>
-//Some Jquery for getting the submit button.
 
-$(document).ready(function(){
-	$('#xmlFormattedDiv').hide();
-  $("#submitBtn").click(function(){
-$('#xmlFormattedDiv').show();
-  });
-  
-   $("#clearBtn").click(function(){
-$('#xmlFormattedDiv').hide();
-  });
-});
-
-
-</script>		
 		
         <div class="col-md-3">
           <div class="panel panel-primary">
