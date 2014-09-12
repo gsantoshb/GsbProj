@@ -1,3 +1,7 @@
 function validateTextBox(xmlContent) {
-	return true;
+	if(xmlContent!=null || xmlContent!=""){
+	return vkbeautify.xml(xmlContent );
+	}else{
+	return false;
+	}
 }

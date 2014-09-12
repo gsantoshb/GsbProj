@@ -20,24 +20,25 @@ $(document).ready(function () {
 	$("#submitBtn").click(function () {
 
 		//Get the xml content from the text box
-		var xmlContent = $("#inputXML").text();
-
-		if (validateTextBox(xmlContent)) {
-			$('#xmlFormattedDiv').show("fast");
+		var xmlContent = $("#inputXML").val();
+		var formattedXML=validateTextBox(xmlContent);
+		if (formattedXML!=null) {
+			$('#xmlFormattedDiv').show("fast").text(formattedXML);
+			
 		} else {
-			$('#alertMsg').html('<div class="alert alert-warning alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><strong>Hey!</strong> Better check the XML as it doesn\'t seem to be proper.</div>');
+			$('#alertMsg').append('<div class="alert alert-warning alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button><strong>Hey!</strong> Better check the XML as it doesn\'t seem to be proper.</div>');
 		}
 	});
 
+	
+	//On click of the clear button, hide the window, clear it and remove any alerts if visible.
 	$("#clearBtn").click(function () {
+		$("textarea").val(null);
 		$('#xmlFormattedDiv').hide("fast");
+		
 		if($('#alertMsg').is(":visible")){
 			$('.alert').remove();
 	}
-	
-		$("textarea").val('');
-		
-	
 	});
 });
 
@@ -83,7 +84,7 @@ $(document).ready(function () {
 			Please enter a valid unformatted XML to pretty print.
 			
 			
-	<textarea rows="10" cols="70" id="inputXML" name="inputXml"></textarea>
+	<textarea rows="10" cols="70" id="inputXML"></textarea>
 	  <button id="submitBtn" class="btn btn-default">Submit</button>
 	  	  <button  id="clearBtn" class="btn btn-default">Clear</button>
 
@@ -110,6 +111,7 @@ $(document).ready(function () {
       <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
       <!-- Include all compiled plugins (below), or include individual files as needed -->
       <script src="js/bootstrap.min.js"></script>
+	  <script src="js/vkbeautify.js"></script>
     </div>
   </body>
 </html>
